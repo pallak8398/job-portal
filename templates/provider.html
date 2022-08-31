@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- content="IE=edge" -->
+    <meta http-equiv="X-UA-Compatible" content="width=device-width, initial-scale=1">
+    <title>JOBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="static/css/main.js"></script>    
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/provider.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/page.css" />
+    <script type=text/javascript>
+      $(function() {
+        $('a#calculate').bind('click', function() {
+          $.getJSON('/provider' + '/delete_job', {
+            a: $('{{jobs[0]}}').val(),
+            b: $('input[name="b"]').val()
+          });
+          return false;
+        });
+      });
+    </script>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" id="title">JOBS<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active"  id="links">
+                <a class="nav-link" href="/provider">Dashboard <span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item"  id="links">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item dropdown"  id="links">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{username}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown08">
+                <a class="dropdown-item" href="/profile">MyProfile</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    {% include '/includes/_messages.html' %}
+
+    <div style="margin-top:6%;margin-right:0%;" class="tab">
+      <button class="tablinks" onclick="openTab(event, 'applicants')">Job Applications</button>
+      <button class="tablinks" onclick="openTab(event, 'jobs')">Your Jobs</button>
+    </div>
+    <br><br>
+    <div id="applicants" class="tabcontent" style="display: block">
+      <h3></h3>
+      <p>
+        <br>
+        <table class="table">
+          <thead>
+            <tr >
+              <th scope="col">Name</th>
+              <th scope="col">Job Field</th>
+              <th scope="col">Job Title</th>
+            </tr>
+          </thead>
+          <tr>
+            <td colspan="6" style="text-align:center"><h4>Pending Application</h4></td>
+          </tr>
+            {% for app in applicants %}
+              {% if app[9] == 'pending' %}
+                <tr>
+                  <td>{{ app[0] }}</td>
+                  <td>{{ app[15] }}</td>
+                  <td><button type="submit" class="collapsible btn btn-success">{{ app[11] }}</button>
+                    <div class="content">
+                      <table class='table'>
+                        <tr>
+                          <th>Location :</th><td> {{ app[12] }}</td>
+                        </tr>
+                        <tr>
+                          <th>Type :</th> <td>{{ app[13] }}</td>
+                        </tr>
+                        <tr>
+                          <th>Site :</th><td>{{ app[14] }}</td>
+                        </tr>
+                        <tr>
+                          <tH>Deadline :</tH><td> {{ app[16] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Joining Date :</th><td> {{ app[18] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Duration :</th><td> {{ app[17] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description :</th><td> {{ app[19] }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                  <td>
+                    <form action="{{ url_for( 'applicant',  id=app[6] ) }}">
+                      <button type="submit" class="btn btn-success">See Details</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="{{ url_for( 'accept_applicant',  id=app[6] , job_code=app[7]  ) }}">
+                      <button type="submit" class="btn btn-success">Accept</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="{{ url_for( 'reject_applicant',  id=app[6] , job_code=app[7] ) }}">
+                      <button type="submit" class="btn btn-danger">Reject</button>
+                    </form>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+            <tr>
+                <td colspan="6" style="text-align:center"><h4>Accepted Application</h4></td>
+            </tr>
+            {% for app in applicants %}
+              {% if app[9]=='accepted' %}
+              <td>{{ app[0] }}</td>
+              <td>{{ app[15] }}</td>
+              <td><button type="submit" class="collapsible btn btn-success">{{ app[11] }}</button>
+                <div class="content">
+                  <table class='table'>
+                    <tr>
+                      <th>Location :</th><td> {{ app[12] }}</td>
+                    </tr>
+                    <tr>
+                      <th>Type :</th> <td>{{ app[13] }}</td>
+                    </tr>
+                    <tr>
+                      <th>Site :</th><td>{{ app[14] }}</td>
+                    </tr>
+                    <tr>
+                      <tH>Deadline :</tH><td> {{ app[16] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Joining Date :</th><td> {{ app[18] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Duration :</th><td> {{ app[17] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description :</th><td> {{ app[19] }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+              <td>
+                <form action="{{ url_for( 'applicant',  id=app[6] ) }}">
+                  <button type="submit" class="btn btn-success">See Details</button>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <button type="submit" class="btn btn-danger" disabled>Accepted</button>
+                </form>
+              </td>
+            </tr>
+              {% endif %}
+            {% endfor %}
+        </table>
+        </p>
+    </div>
+
+    <div id="jobs" class="tabcontent" style="display: none">
+      <h3></h3>
+      <p>
+        <table class="table">
+          <thead>
+            <tr >
+              <th scope="col">Job Title</th>
+              <th scope="col">Job Field</th>
+              <th scope="col"></th>
+              <th></th>
+            </tr>
+          </thead>
+            {% for job in jobs %}
+              <tr> 
+                <!-- {{ job }} -->
+                <td >{{ job[2] }} </td>
+                <td >{{ job[6] }}</td>
+                <td>
+                  {% if job[0] == 'open'%}
+                    <form action="{{ url_for( 'close_job',  id=job[1]  ) }}">
+                      <button type="submit" class="btn btn-success">Close Job</button>
+                    </form>
+                  {% else %}
+                    <form>
+                      <button type="submit" class="btn btn-danger" disabled>Job Closed</button>
+                    </form>
+                  {% endif %}
+                </td>
+                <td>
+                    <button type="submit" class="collapsible btn btn-success">See Details</button>
+                    <div class="content">
+                      <table class='table'>
+                        <tr>
+                          <th>Location :</th><td> {{ job[3] }}</td>
+                        </tr>
+                        <tr>
+                          <th>Type :</th> <td>{{ job[4] }}</td>
+                        </tr>
+                        <tr>
+                          <th>Site :</th><td>{{ job[5] }}</td>
+                        </tr>
+                        <tr>
+                          <tH>Deadline :</tH><td> {{ job[7] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Joining Date :</th><td> {{ job[9] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Duration :</th><td> {{ job[8] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description :</th><td> {{ job[10] }}</td>
+                        </tr>
+                        <tr>
+                          <th>Status:</th><td>{{ job[0] }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                </td>
+              </tr>
+            {% endfor %}
+        </table>
+      </p> 
+      <br><br>
+      <form method="POST" name="job">
+          <input class="btn btn-success" type="submit" formaction="/jobs" name="Submit" value="Add Jobs">
+      </form>
+    </div>
+
+    <script>
+    function openTab(evt, tabname) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabname).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    </script>
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+      
+      for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (content.style.display === "block") {
+                  content.style.display = "none";
+              } else {
+                  content.style.display = "block";
+              }
+          });
+      }
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
+</html>

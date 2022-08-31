@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JOBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="static/css/main.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/page.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/profile.css" />
+    <script type="text/javascript">
+       if(detail[4]==""){
+                document.getElementById('cv').style.display='none';
+        }        
+    </script>
+    <script type="text/javascript">
+        function email(){
+            document.getElementById('email').style.display='none';
+            document.getElementById('emaildiv').style.display='block';
+        }
+        function contact(){
+            document.getElementById('contact').style.display='none';
+            document.getElementById('contactdiv').style.display='block';
+        }
+        function power(){
+            document.getElementById('power').style.display='none';
+            document.getElementById('powerdiv').style.display='block';
+        }
+        function description(){
+            document.getElementById('desc').style.display='none';
+            document.getElementById('descdiv').style.display='block';
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" id="title">JOBS<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active"  id="links">
+                <a class="nav-link" href="/provider">Dashboard <span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item"  id="links">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item dropdown"  id="links">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{username}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown08">
+                <a class="dropdown-item" href="/profile">MyProfile</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div id="profilepic">
+        <div id="bar">
+            <h1 style="margin-left:25px;margin-top:5px">{{ info[1] }}</h1>
+        </div>
+    </div>
+    {% include '/includes/_messages.html' %}
+    <table class="table" id="profile">
+        <tr>
+            <th><h2>Email</h2></th>
+            <td>
+                <p id="email">
+                    {{ info[2] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=email() id="emailbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="emaildiv" style="display:none">
+                    <form id="inpemail" name="em" method="POST">
+                        <input type="text" name="email" value="{{info[2]}}">
+                        <input type="submit" formaction="/provider_email" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th><h2>Contact Number</h2></th>
+            <td>
+                <p id="contact">
+                    {{ detail[2] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=contact() id="emailbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="contactdiv" style="display:none">
+                    <form id="inpcontact" name="no" method="POST">
+                        <input type="text" name="contact" value="{{detail[2]}}">
+                        <input type="submit" formaction="/provider_contact" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th><h2>Man Power</h2></th>
+            <td>
+                <p id="power">
+                    {{ detail[3] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=power() id="powerbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="powerdiv" style="display:none">
+                    <form id="inppower" name="man" method="POST">
+                        <input type="text" name="power" value="{{detail[3]}}">
+                        <input type="submit" formaction="/provider_power" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th><h2>Description</h2></th>
+            <td>
+                <p id="desc">
+                    {{ detail[1] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=description() id="descbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="descdiv" style="display:none">
+                    <form id="inpdesc" name="descrip" method="POST">
+                        <!-- <input type="textArea" name="desc" value="{{detail[1]}}"> -->
+                        <textarea name="desc" value="{{detail[1]}}">{{ detail[1] }}</textarea>
+                        <input type="submit" formaction="/provider_description" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+    <!-- <form method="get" action="/skills">
+        <button>Add Jobs</button>
+    </form> -->
+</body>
+</html>

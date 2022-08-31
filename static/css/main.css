@@ -1,0 +1,63 @@
+body{
+    height: 100%;
+    background-image: url(image1.jpg);
+}
+#title
+{
+    font-size: 30px;
+}
+#links
+{
+    margin-top: 17px;
+}
+.option
+{
+    width: 350px;
+    height: 450px;
+    background-color: rgb(32, 32, 32,0.75);
+    color: #fff;
+    top: 140px;
+    left:525px;
+    position : absolute;
+    transform: translate(-50% -50%);
+    box-sizing: border-box;
+    padding: 40px 30px;
+}
+.link
+{
+    color: rgb(0, 174, 255);
+}
+.form{
+    margin:0;
+    padding: 0 0 15px;
+    text-align: center;
+}
+.option input{
+    width:100%;
+    margin-bottom: 20px;
+}
+.option input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height:40px;
+    color: #fff;
+    font-size: 16px;
+}
+.option input[type="submit"]
+{
+    outline: none;
+    border: none;
+    height: 30px;
+    background: #fff;
+    color: black;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.option input[type="submit"]:hover{
+    cursor: pointer;
+    background-color:  rgb(128, 3, 40);
+    color:#fff;
+}

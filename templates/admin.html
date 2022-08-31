@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JOBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="static/css/main.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/page.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+    font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+    }
+        .button {
+        background-color: Transparent;
+        color : white;
+        background-repeat:no-repeat;
+        border: none;
+        cursor:pointer;
+        overflow: hidden;
+        outline:none;
+        padding: 20px 20px 20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" id="title">JOBS<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active"  id="links">
+                <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item"  id="links">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item dropdown"  id="links">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{username}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown08">
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <div id="mySidenav" style="margin-top:5%;" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- <div class="button" onclick="about()">About</div> -->
+        
+        <div class="button" onclick="view_seekers()">View all Job Applicants</div>
+        
+        <div class="button" onclick="view_providers()">View all Job Providers</div>
+        
+        <div class="button" onclick="view_jobs()">View all Jobs</div>
+        
+      </div>
+      <div id="main" style="margin-top:5%;">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Options</span>
+            {% include '/includes/_messages.html' %}
+            <div class="container">
+              <h1 align="center">Welcome Admin!</h1>
+              <!-- <div id="v_about" style="display:none;margin-top:7%;">
+                gkmxs
+              </div> -->
+              <div id="v_seeker" style="display: none;margin-top:7%;">
+                <table class="table">
+                  <thead>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Contact</th>
+                  <th>Degree</th>
+                  </thead>
+                  {% for row in seeker %}
+                  <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                     <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                  </tr> 
+                  {% endfor %}
+                </table>
+              </div>
+              <div id="v_provider" style="display: none;margin-top:7%;">
+                <table class="table">
+                  <thead>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Description</th>
+                  </thead>
+                  {% for row in provider %}
+                  <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                     <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                  </tr> 
+                  {% endfor %}
+                </table>
+              </div>
+              <div id="v_jobs" style="display: none;margin-top:7%;">
+                <table class="table">
+                  <thead>
+                      <th>Username</th>
+                      <th>Job Title</th>
+                      <th>Location</th>
+                      <th>Job Type</th>
+                      <th>Site Type</th>
+                      <th>Duration</th>
+                      <th>Description</th>
+                  </thead>
+                  {% for row in jobr %}
+                  <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                     <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[10] }}</td>
+                  </tr> 
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+      <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+        }
+      // function about() {
+      //     document.getElementById("v_about").style.display='block';
+      //     document.getElementById("v_seeker").style.display='none';
+      //     document.getElementById("v_provider").style.display='none';
+      //     document.getElementById("v_jobs").style.display='none';
+
+      //}
+      function view_seekers(){
+        document.getElementById("v_seeker").style.display='block';
+          document.getElementById("v_provider").style.display='none';
+          document.getElementById("v_jobs").style.display='none';
+      }
+      function view_providers(){
+        document.getElementById("v_provider").style.display='block';
+        document.getElementById("v_seeker").style.display='none';
+          document.getElementById("v_jobs").style.display='none';
+      }
+      function view_jobs(){
+        document.getElementById("v_jobs").style.display='block';
+        document.getElementById("v_seeker").style.display='none';
+        document.getElementById("v_provider").style.display='none';
+      }
+      </script>
+    
+    
+</body>
+</html>

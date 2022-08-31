@@ -1,0 +1,59 @@
+#profilepic{
+    top: 75px;
+    height:370px;
+    width:100%;
+    position : absolute;    
+    background-image: url("7457922892b55cf.jpg");
+}
+#bar{
+    top:310px;
+    height:60px;
+    width:100%;
+    background-color: rgba(0, 0, 0,0.25);
+    color: rgb(253, 253, 253);
+    position : absolute;
+}
+#profile{
+    background-origin: padding-box;
+    align-self: center;
+    width:100%;
+    margin-top: 500px; 
+    margin-bottom:5%;
+}
+#element1 {display:inline-block;margin-right:10px;} 
+#element2 {display:inline-block;} 
+tr:nth-child(even) {background-color: #f2f2f2;}
+th,td{
+    padding: 10px;
+}
+td{
+    font-size: 20px;
+}
+.skill{
+    align-self: center;
+    margin-left: 5%;
+    margin-bottom: 100px;
+    margin-right:5%;
+}
+.skill input[type="submit"]
+{
+    outline: none;
+    border: none;
+    height: 30px;
+    background: rgb(197, 197, 197);
+    color: black;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.styled-select {
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 35px;
+    overflow: hidden;
+    width: 350px;
+ }
+ .semi-square {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+ }
+ .blue    { background-color: #fffefe; }

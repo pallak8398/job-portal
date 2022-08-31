@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JOBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        #profilepic{
+            top: 75px;
+            height:370px;
+            width:100%;
+            position : absolute;    
+            background-image:url("/static/css/7457922892b55cf.jpg");
+        }
+        #bar{
+            top:310px;
+            height:60px;
+            width:100%;
+            background-color: rgba(0, 0, 0,0.25);
+            color: rgb(253, 253, 253);
+            position : absolute;
+        }
+        #profile{
+            background-origin: padding-box;
+            align-self: center;
+            width:100%;
+            margin-top: 500px; 
+            margin-bottom:5%;
+        }
+        #element1 {display:inline-block;margin-right:10px;} 
+        #element2 {display:inline-block;} 
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        th,td{
+            padding: 10px;
+        }
+        td{
+            font-size: 20px;
+        }
+        .skill{
+            align-self: center;
+            margin-left: 350px;
+            margin-bottom: 100px;
+        }
+        .skill input[type="submit"]
+        {
+            outline: none;
+            border: none;
+            height: 30px;
+            background: rgb(197, 197, 197);
+            color: black;
+            font-size: 18px;
+            border-radius: 20px;
+        }
+        .styled-select {
+            background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+            height: 35px;
+            overflow: hidden;
+            width: 350px;
+        }
+        .semi-square {
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .blue    { background-color: #fffefe; }
+        #text
+        {
+            margin: 20px 20px 20px 20px;
+        }
+        #title
+        {
+            font-size: 30px;
+        }
+        #links
+        {
+            margin-top: 17px;
+        }
+
+        #forms{
+            margin-top: 50px;
+        }
+
+        #tab{
+            /* margin-top: 70px; */
+            background-color: rgb(211, 209, 209);
+            border:1px solid #ccc;
+            
+        }
+        #tab button {
+            background-color:rgb(211, 209, 209);
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        #tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        #tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        #tabcontent {
+            /* display: none; */
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* .tabcontent1 {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        } */
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" id="title">JOBS<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active"  id="links">
+                <a class="nav-link" href="/provider">Dashboard <span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item"  id="links">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item dropdown"  id="links">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{username}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown08">
+                <a class="dropdown-item" href="/profile">MyProfile</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div id="profilepic">
+        <div id="bar">
+            <h1 style="margin-left:25px;margin-top:5px">{{ info[1] }}</h1>
+        </div>
+    </div>
+    {% include '/includes/_messages.html' %}
+    <table class="table" id="profile">
+        <tr>
+            <th><h2>Gender</h2></th>
+            <td>{{ detail[1] }}
+            </td>
+        </tr>
+        <tr>
+            <th><h2>Email</h2></th>
+            <td>
+                {{ info[2] }}</td>
+        </tr>
+        <tr>
+            <th><h2>Contact Number</h2></th>
+            <td>{{ detail[3] }}</td>
+        </tr>
+        <tr>
+            <th><h2>Degree</h2></th>
+            <td>{{ detail[2] }}</td>
+        </tr>
+        <tr id="cv">            
+            <th><h2>CVLink</h2></th>
+            <td>{{ detail[4] }}</td>
+        </tr>
+        <tr>
+            <th><h2>Preferences</h2></th>
+            <td id='skill'>
+                {% for cur in skill %}
+                    {{ cur[0] }}
+                    <br>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <script src="static/main.js"></script> 
+</body>
+</html>
+    

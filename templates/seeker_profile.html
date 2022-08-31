@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JOBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/page.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/profile.css" />
+
+    
+    <script type="text/javascript">
+        function gender(){
+            document.getElementById('gend').style.display='none';
+            document.getElementById('genddiv').style.display='block';
+            // document.getElementById('gendbtn').style.display='none';
+        }
+        function email(){
+            document.getElementById('email').style.display='none';
+            document.getElementById('emaildiv').style.display='block';
+            // document.getElementById('emailbtn').style.display='none';
+        }
+        function contact(){
+            document.getElementById('contact').style.display='none';
+            document.getElementById('contactdiv').style.display='block';
+            // document.getElementById('contactbtn').style.display='none';
+        }
+        function degree(){
+            document.getElementById('degree').style.display='none';
+            document.getElementById('degreediv').style.display='block';
+        }
+        function CVLink(){
+            document.getElementById('CVLink').style.display='none';
+            document.getElementById('CVLinkdiv').style.display='block';
+        }
+    </script>
+    <script>
+        for(i=1;i<=num;i++){
+            skills=skill[0];
+            document.getElementsByClassName(skills).disabled = true;
+        }
+        
+    </script>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" id="title">JOBS<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active"  id="links">
+                <a class="nav-link" href="/seeker">Dashboard <span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item"  id="links">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item dropdown"  id="links">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{username}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown08">
+                <a class="dropdown-item" href="/profile">MyProfile</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div id="profilepic">
+        <div id="bar">
+            <h1 style="margin-left:25px;margin-top:5px">{{ info[1] }}</h1>
+        </div>
+    </div>
+    {% include '/includes/_messages.html' %}
+    <table class="table" id="profile">
+        <tr>
+            <th><h2>Gender</h2></th>
+            <td>{{ detail[1] }}</td>
+        </tr>
+        <tr>
+            <th><h2>Email</h2></th>
+            <td>
+                <p id="email">
+                    {{ info[2] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=email() id="emailbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="emaildiv" style="display:none">
+                    <form id="inpemail" name="emailid" method="POST">
+                        <input type="text" name="email" value="{{info[2]}}">
+                        <input type="submit" formaction="/seeker_email" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th><h2>Contact Number</h2></th>
+            <td>
+                <p id="contact">
+                    {{ detail[3] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=contact() id="contactbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="contactdiv" style="display:none">
+                    <form id="inpcontact" name="contactno" method="POST">
+                        <input type="text" name="contact" value="{{detail[3]}}">
+                        <input type="submit" formaction="/seeker_contact" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th><h2>Degree</h2></th>
+            <td>
+                <p id="degree">
+                    {{ detail[2] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=degree() id="degreebtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="degreediv" style="display:none">
+                    <form id="inpdegree" name="Degree" method="POST">
+                        <div class="form-group">
+                            <select name="degree">
+                                <option value="{{detail[2]}}" > {{ detail[2] }} </option>
+                                {% for choice in ['Under Graduate','Graduate','Post Graduate','Doctrate'] %}
+                                    {% if choice == detail[2] %}
+                                        continue;
+                                    {% else %}
+                                        <option value="{{choice}}" > {{ choice }} </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <input type="submit" formaction="/seeker_degree" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr id="cv">
+            
+            <th><h2>CVLink</h2></th>
+            <td>
+                <p id="CVLink">
+                    {{ detail[4] }}
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <button onclick=cv() id="cvbtn"><img src="/static/css/edit.jpg"></button>
+                </p>
+                <div id="CVLinkdiv" style="display:none">
+                    <form id="inpCVLink" name="CV" method="POST">
+                        <input type="text" name="CVLink" value="{{detail[4]}}" id="samp">
+                        <input type="submit" formaction="/seeker_CVLink" value="Save" name="Submit">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        
+        <script>
+                if (document.getElementById('samp').value==null){
+                    document.getElementById("cv").style.display('none');
+                }
+        </script>
+        <tr>
+            <th><h2>Preferences</h2></th>
+            <td id='skill'>
+                {% for cur in skill %}
+                    <form name="form1" id="element2" method="POST">
+                        <input type="hidden" type="text" name="del" id="delski" value="{{cur[0]}}">
+                        {{ cur[0] }}
+                        <input type="image" formaction="/delete" src="/static/css/delete.jpg" name="Submit">
+                    </form>
+                    <br>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <div class="skill">
+    <form  id="skill" method="POST">
+        <div class="form-group">
+            <select name="skill" class="styled-select blue semi-square" data-placeholder="Select field">
+                <option class="emptyOptionSelected" value="" > </option>
+                <option class="Architecture" value="Architecture" > Architecture </option>
+                <option class="Interior_Design" value="Interior_Design" > Interior Design </option>
+                <option class="Commerce" value="Commerce" disabled> Commerce </option>
+                <option class="Accounts" value="Accounts" > Accounts </option>
+                <option class="Chartered_Accountancy" value="Chartered_Accountancy" > Chartered Accountancy (CA) </option>
+                <option class="Animation" value="Animation" > Animation </option>
+                <option class="Fashion_Design" value="Fashion_Design" > Fashion Design </option>
+                <option class="Graphic_Design" value="Graphic_Design" > Graphic Design </option>
+                <option class="Merchandise_Design" value="Merchandise_Design" > Merchandise Design </option>
+                <option class="Engineering" value="Engineering" disabled> Engineering </option>
+                <option class="Aerospace" value="Aerospace" > Aerospace Engineering </option>
+                <option class="Biotech" value="Biotech" > Biotechnology Engineering </option>
+                <option class="Chemical" value="Chemical" > Chemical Engineering </option>
+                <option class="Civil" value="Civil" > Civil Engineering </option>
+                <option class="Electrical" value="Electrical" > Electrical Engineering </option>
+                <option class="Electronics" value="Electronics" > Electronics Engineering </option>
+                <option class="Energy_Science_and_Engineering" value="Energy Science and Engineering" > Energy Science & Engineering </option>
+                <option class="Engineering_Design" value="Engineering Design" > Engineering Design </option>
+                <option class="Engineering_Physics" value="Engineering Physics" > Engineering Physics </option>
+                <option class="Game_Development" value="Game Development" > Game Development </option>
+                <option class="Image_Processing" value="Image Processing" > Image Processing </option>
+                <option class="Material_Science" value="Material Science" > Material Science </option>
+                <option class="Mechanical" value="Mechanical" > Mechanical Engineering </option>
+                <option class="Metallurgy" value="Metallurgy" > Metallurgical Engineering </option>
+                <option class="Mobile_App_Development" value="Mobile App Development" > Mobile App Development </option>
+                <option class="Naval_and_Ocean" value="Naval and Ocean" > Naval Architecture and Ocean Engineeering </option>
+                <option class="Petroleum_Engineering" value="Petroleum Engineering" > Petroleum Engineering </option>
+                <option class="Programming" value="Programming" > Programming </option>
+                <option class="Software_Development" value="Software Development" > Software Development </option>
+                <option class="Software_Testing" value="Software Testing" > Software Testing </option>
+                <option class="Web_Development" value="Web Development" selected="selected"> Web Development </option>
+                <option class="Hospitality" value="Hospitality" disabled> Hospitality </option>
+                <option class="Hotel_Management" value="Hotel Management" > Hotel Management </option>
+                <option class="Travel_and_Tourism" value="Travel and Tourism" > Travel & Tourism </option>
+                <option class="MBA" value="MBA" disabled> MBA </option>
+                <option class="Digital_Marketing" value="Digital Marketing" > Digital Marketing </option>
+                <option class="Finance" value="Finance" > Finance </option>
+                <option class="General_Management" value="General Management" > General Management </option>
+                <option class="HR" value="HR" > Human Resources (HR) </option>
+                <option class="Market_Business_Research" value="Market Business Research" > Market/Business Research </option>
+                <option class="Marketing" value="Marketing" > Marketing </option>
+                <option class="Operations" value="Operations" > Operations </option>
+                <option class="Sales" value="Sales" > Sales </option>
+                <option class="Strategy" value="Strategy" > Strategy </option>
+                <option class="Supply_Chain_Management" value="Supply Chain Management" > Supply Chain Management (SCM) </option>
+                <option class="Media" value="Media" disabled> Media </option>
+                <option class="Cinematography" value="Cinematography" > Cinematography </option>
+                <option class="Content_Writing" value="Content Writing" > Content Writing </option>
+                <option class="Film_Making" value="Film Making" > Film Making </option>
+                <option class="Journalism" value="Journalism" > Journalism </option>
+                <option class="Motion_Graphics" value="Motion Graphics" > Motion Graphics </option>
+                <option class="Photography" value="Photography" > Photography </option>
+                <option class="PR" value="PR" > Public Relations (PR) </option>
+                <option class="Social_Media_Marketing" value="Social Media Marketing" > Social Media Marketing </option>
+                <option class="Video_Making_Editing" value="Video Making Editing" > Video Making/Editing </option>
+                <option class="Videography" value="Videography" > Videography </option>
+                <option class="Science" value="Science" disabled> Science </option>
+                <option class="Biology" value="Biology" > Biology </option>
+                <option class="Chemistry" value="Chemistry" > Chemistry </option>
+                <option class="Mathematics" value="Mathematics" > Mathematics </option>
+                <option class="Physics" value="Physics" > Physics </option>
+                <option class="Statistics" value="Statistics" > Statistics </option>
+                <option class="Others" value="Others" disabled> Others </option>
+                <option class="Acting" value="Acting" > Acting </option>
+                <option class="Agriculture_and_Food_Engineering" value="Agriculture and Food Engineering" > Agriculture & Food Engineering </option>
+                <option class="Company_Secretary" value="Company Secretary" > Company Secretary (CS) </option>
+                <option class="Data_Science" value="Data Science" > Data Science </option>
+                <option class="Event_Management" value="Event Management" > Event Management </option>
+                <option class="Humanities" value="Humanities" > Humanities </option>
+                <option class="Law" value="Law" > Law </option>
+                <option class="Medicine" value="Medicine" > Medicine </option>
+                <option class="Pharmaceutical" value="Pharmaceutical" > Pharmaceutical </option>
+                <option class="Psychology" value="Psychology" > Psychology </option>
+                <option class="Teaching" value="Teaching" > Teaching </option>
+                <option class="UI_UX" value="UI UX" > UI/UX Design </option>
+                <option class="Volunteering" value="Volunteering" > Volunteering </option>
+            </select>  
+        </div>              
+        <input type="submit" formaction="/skills" name="Submit" value="Add preferences">
+    </form>
+    </div>
+    <script src="static/main.js"></script> 
+</body>
+</html>
+    
